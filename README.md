@@ -11,6 +11,8 @@ Install Tools
     *** npm i nodemon --save-dev (inside backend folder)
     
      ***npm i use-reducer-logger --force (inside frontend folder)
+     
+     ***install bootstrap npm install react-bootstrap@next bootstrap@5.1.0
 
 Create React App
 
@@ -60,3 +62,4 @@ define reducer
 update fetch data
 
 get state from useReducer
+
