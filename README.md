@@ -12,7 +12,7 @@ Install Tools
     
      ***npm i use-reducer-logger --force (inside frontend folder)
      
-     ***install bootstrap npm install react-bootstrap@next bootstrap@5.1.0
+     ***install bootstrap npm npm install bootstrap@v5.2.3
 
 Create React App
 
