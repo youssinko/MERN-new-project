@@ -2,6 +2,16 @@
 
 Install Tools 
 
+ ***	npx create-react-app
+ 
+  *** npm install react-router-dom
+  
+   *** npm i express 
+   
+    *** npm i nodemon --save-dev
+    
+     ***npm i use-reducer-logger --force
+
 Create React App
 
 Create Git Repository
