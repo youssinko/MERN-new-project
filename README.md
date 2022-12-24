@@ -13,6 +13,8 @@ Install Tools
      ***npm i use-reducer-logger --force (inside frontend folder)
      
      ***install bootstrap npm install react-bootstrap bootstrap --legacy-peer-deps
+     *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps
+
 Create React App
 
 Create Git Repository
