@@ -2,15 +2,15 @@
 
 Install Tools 
 
- ***	npx create-react-app
+ ***	npx create-react-app store (creating frontend and backend folders)
  
   *** npm install react-router-dom
   
    *** npm i express 
    
-    *** npm i nodemon --save-dev
+    *** npm i nodemon --save-dev (inside backend folder)
     
-     ***npm i use-reducer-logger --force
+     ***npm i use-reducer-logger --force (inside frontend folder)
 
 Create React App
 
