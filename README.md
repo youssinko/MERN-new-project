@@ -16,7 +16,7 @@ Install Tools
      
      *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps (import 'bootstrap/dist/css/bootstrap.min.css' in index.js)
      
-     *** npm i react-helmet-async --legacy-peer-deps (inside frontend folder)
+     *** npm i react-helmet-async --legacy-peer-deps (inside frontend folder) and added HelmetProvider in index.js 
 
 Create React App
 
@@ -70,3 +70,5 @@ get state from useReducer
 created product.js  and applied bootstrap 
 
 created rating.js and added     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" /> to index.html to apply font awesome 
+
+added stock for each product and used "if statement" to show "in stock" or "unavailable warning"
