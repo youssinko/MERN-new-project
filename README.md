@@ -64,3 +64,6 @@ update fetch data
 
 get state from useReducer
 
+created product.js  and applied bootstrap 
+
+created rating.js and added     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" /> to index.html to apply font awesome 
