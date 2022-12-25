@@ -72,3 +72,7 @@ created product.js  and applied bootstrap
 created rating.js and added     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" /> to index.html to apply font awesome 
 
 added stock for each product and used "if statement" to show "in stock" or "unavailable warning"
+ 
+added utilities.js to grab error message from back end to front end (page not found)
+
+added store.js where usecontect and usereducers where imported to change the state of "add to cart". function storeProvider was added to index.js as well
