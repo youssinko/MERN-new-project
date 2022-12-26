@@ -72,7 +72,7 @@ function ProductScreen() {
     const { data } = await axios.get(`/api/products/${product._id}`)
     
     if (data.stock < quantity) {
-      window.alert("Sorry,Product is out of stock");
+      window.alert("Sorry,Product is out of Stock");
       return;
     }
     //function that add item to the cart, dispatch an action in the react contect

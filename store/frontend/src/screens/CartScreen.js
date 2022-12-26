@@ -7,6 +7,7 @@ import MessageBox from "../components/MessageBox";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import ListGroup from 'react-bootstrap/ListGroup'
 
 function CartScreen() {
@@ -58,6 +59,26 @@ function CartScreen() {
               ))}
             </ListGroup>
           )}
+        </Col>
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h3>
+                SubTotal({cartItems.reduce((a,c)=> a + c.quantity ,0)}{' '}
+                items) : $
+                {cartItems.reduce((a,c)=> a + c.price * c.quantity ,0)}
+                </h3>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button type='button' variant="primary" disabled={cartItems.length === 0}>
+                  Proceed to Checkout
+                </Button>
+              </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </div>
