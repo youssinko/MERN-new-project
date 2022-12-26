@@ -43,3 +43,6 @@ main{
   max-width: 100%;
   padding: 20px;
 }
+.img-thumbnail{
+  height:80px;
+}

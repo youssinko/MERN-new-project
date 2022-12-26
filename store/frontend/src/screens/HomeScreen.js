@@ -5,6 +5,10 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Product from "../components/Product";
 import { Helmet } from "react-helmet-async";
+import Loading from "../components/Loading";
+import MessageBox from "../components/MessageBox";
+
+
 //manage complex state by using useReducer instead of useState (useState always depend on previous state)
 const reducer = (state, action) => {
   //state is current state, action that change  the state and create new state
@@ -62,9 +66,9 @@ function HomeScreen() {
       <h1>personalized products</h1>
       <div className="products">
         {loading ? (
-          <div>Loading ... </div>
+          <Loading />
         ) : error ? (
-          <div>{error}</div>
+         <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
           <Row>
          { products.map((product) => (
