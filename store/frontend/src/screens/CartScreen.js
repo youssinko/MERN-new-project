@@ -21,7 +21,7 @@ function CartScreen() {
       </Helmet>
       <Row>
         <Col md={8}>
-          {cartItems.lenght === 0 ? (
+          {cartItems.length === 0 ? (
             <MessageBox>
               Cart is Empty <Link to="/">Back to Shopping</Link>
             </MessageBox>
