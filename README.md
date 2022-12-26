@@ -75,4 +75,8 @@ added stock for each product and used "if statement" to show "in stock" or "unav
  
 added utilities.js to grab error message from back end to front end (page not found)
 
-added store.js where usecontect and usereducers where imported to change the state of "add to cart". function storeProvider was added to index.js as well
+added store.js where usecontext and usereducers where imported to change the state of "add to cart". function storeProvider was added to index.js as well
+
+created cartScreen.js that contains items, thumbnail , plus sign , minus sign and navigate back to shopping if no items in cart.
+
+in productScreen.js product.js and app.js add functions that allow to add quantity of an items in shopping cart 
