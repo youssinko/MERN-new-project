@@ -80,3 +80,5 @@ added store.js where usecontext and usereducers where imported to change the sta
 created cartScreen.js that contains items, thumbnail , plus sign , minus sign and navigate back to shopping if no items in cart.
 
 in productScreen.js product.js and app.js add functions that allow to add quantity of an items in shopping cart 
+
+created subtotal by multiplying added price with added quantity (items) and created checkout button
