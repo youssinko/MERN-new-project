@@ -44,7 +44,10 @@ contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity}})
       <Rating rating={product.rating} numReviews={product.numReviews} />
       
         <Card.Text>${product.price}</Card.Text>
+        {product.stock === 0 ? <Button style={{backgroundColor:'grey'}} disabled>Out of Stock</Button>
+        :
       <Button onClick={addToCartHandler}> Add to Cart</Button>
+  }
       </Card.Body>
 </Card>
 )
