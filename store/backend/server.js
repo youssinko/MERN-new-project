@@ -2,6 +2,8 @@ import express from "express";
 import data from "./data.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import seedRouter from './routes/seedRoutes.js'
+
 //to fetch variables in the env file
 dotenv.config();
 //connect to mongodb
@@ -15,6 +17,10 @@ mongoose
   });
 
 const app = express();
+
+app.use('/api/seed' , seedRouter)
+// in browser , type localhost/5000/api/seed to seed to database
+
 app.get("/api/products", (req, res) => {
   //send back data to front end
   res.send(data.products);

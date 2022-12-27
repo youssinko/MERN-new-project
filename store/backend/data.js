@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: "1",
+      
       name: "Tumbler",
       slug: "color-changing tumbler",
       category: "Tumblers",
@@ -13,7 +13,7 @@ const data = {
       description: "Personalized color-changing tumbler",
     },
     {
-      _id: "2",
+    
       name: "Shirts",
       slug: "long-sleeve shirts",
       category: "shirts",
@@ -25,7 +25,7 @@ const data = {
       description: "Personalized short-sleeve shirts",
     },
     {
-      _id: "3",
+      
       name: "Stickers",
       slug: "clear foil sticker",
       category: "stickers",
