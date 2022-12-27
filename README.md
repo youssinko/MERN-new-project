@@ -18,7 +18,7 @@ Install Tools
      
      *** npm i react-helmet-async --legacy-peer-deps (inside frontend folder) and added HelmetProvider in index.js 
      
-     *** npm i mongoose , npm i dotenv, npm i express-async-handler and npm i bcryptjs in backend folder
+     *** npm i mongoose , npm i dotenv, npm i express-async-handler , npm i jsonwebtoken and npm i bcryptjs in backend folder
 
 Create React App
 
