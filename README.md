@@ -86,3 +86,5 @@ in productScreen.js product.js and app.js add functions that allow to add quanti
 created subtotal by multiplying added price with added quantity (items) and created checkout button
 
 created signinScreen.js with form to fill out email/password or redirect to signup page
+
+connected to mongoDB and seeded data in the backend folder and created express routes in seedRoutes.js file
