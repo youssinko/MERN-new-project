@@ -16,7 +16,7 @@ Install Tools
      
      *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps (import 'bootstrap/dist/css/bootstrap.min.css' in index.js)
      
-     *** npm i react-helmet-async --legacy-peer-deps (inside frontend folder) and added HelmetProvider in index.js 
+     *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps(inside frontend folder) and added HelmetProvider in index.js 
      
      *** npm i mongoose , npm i dotenv, npm i express-async-handler , npm i jsonwebtoken and npm i bcryptjs in backend folder
 
