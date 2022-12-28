@@ -41,7 +41,7 @@ function CartScreen() {
     });
   };
   const checkoutHandler = () => {
-    navigate("/signin?redirect=/shipping"); //direct to signin screen, if user is authenticated then redirect to shipping address
+    navigate('/signin?redirect=/shipping');; //direct to signin screen, if user is authenticated then redirect to shipping address
   };
   return (
     <div>

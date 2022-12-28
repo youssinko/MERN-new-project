@@ -6,12 +6,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { Helmet } from "react-helmet-async";
-import { useLocation, Link} from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import Axios from "axios";
 import { Store } from "../Store";
 import { useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
+import { getError } from "../utilities";
+import { useEffect } from "react";
+
 function SigninScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -20,10 +23,11 @@ function SigninScreen() {
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
-  const { state, dispatch: contextDispatch } = useContext(Store);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { userInfo } = state;
 
   const submitHandler = async (event) => {
     //stop refreshing page when sign in
@@ -36,13 +40,21 @@ function SigninScreen() {
       });
       //after signin is successful, pass type of action (user_signin) and payload would be data from backend
       contextDispatch({ type: "USER_SIGNIN", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
       //save user info
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      //then redirect to the current location or to the Homepage
       navigate(redirect || "/");
     } catch (err) {
-    toast.error('Invalid Email or password')
+      toast.error(getError(err));
+    }
   };
-}
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
   return (
     <Container className="small-container">
       <Helmet>

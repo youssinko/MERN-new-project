@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
+import ShippingScreen from "./screens/ShippingScreen";
 
 function App() {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -72,6 +73,7 @@ function App() {
             <Route path="/" element={<HomeScreen />}></Route>
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/signin" element={<SigninScreen />}></Route>
+            <Route path="/shipping" element={<ShippingScreen />}></Route>
             
 
           </Routes>
