@@ -32,8 +32,8 @@ contextDispatch({type:'CART_ADD_ITEM',payload:{...item,quantity}})
  }
 
     
-  return (
-    <Card>
+ return (
+  <Card>
     <Link to={`/product/${product.slug}`}>
       <img src={product.image} className="card-img-top" alt={product.name} />
     </Link>
@@ -42,15 +42,17 @@ contextDispatch({type:'CART_ADD_ITEM',payload:{...item,quantity}})
         <Card.Title>{product.name}</Card.Title>
       </Link>
       <Rating rating={product.rating} numReviews={product.numReviews} />
-      
-        <Card.Text>${product.price}</Card.Text>
-        {product.stock === 0 ? <Button style={{backgroundColor:'grey'}} disabled>Out of Stock</Button>
-        :
-      <Button onClick={() => addToCartHandler(product)}> Add to Cart</Button>
-  }
-      </Card.Body>
-</Card>
-)
+      <Card.Text>${product.price}</Card.Text>
+      {product.stock === 0 ? (
+        <Button variant="light" disabled>
+          Out of stock
+        </Button>
+      ) : (
+        <Button onClick={() => addToCartHandler(product)}>Add to cart</Button>
+      )}
+    </Card.Body>
+  </Card>
+);
 }
 
 export default Product

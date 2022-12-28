@@ -11,6 +11,7 @@ import { useState } from "react";
 import Axios from "axios";
 import { Store } from "../Store";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 function SigninScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -33,14 +34,15 @@ function SigninScreen() {
         email,
         password,
       });
-      //after signin is successfull, pass type of action (user_signin) and payload would be data from backend
+      //after signin is successful, pass type of action (user_signin) and payload would be data from backend
       contextDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
       //save user info
       navigate(redirect || "/");
-    } catch (err) {}
-    alert('Invalid email or password')
+    } catch (err) {
+    toast.error('Invalid Email or password')
   };
+}
   return (
     <Container className="small-container">
       <Helmet>

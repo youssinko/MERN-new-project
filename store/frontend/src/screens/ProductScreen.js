@@ -73,7 +73,7 @@ function ProductScreen() {
     const { data } = await axios.get(`/api/products/${product._id}`)
     
     if (data.stock < quantity) {
-      // window.alert("Sorry,Product is out of Stock");
+      window.alert("Sorry,Product is out of Stock");
       return;
     }
     //function that add item to the cart, dispatch an action in the react contect
@@ -83,6 +83,7 @@ function ProductScreen() {
     });
     navigate('/cart')
   };
+
 //   const {state, dispatch:contextDispatch} =useContext(Store)
 //   const {
 //     cart: { cartItems },
@@ -145,7 +146,7 @@ function ProductScreen() {
                 {product.stock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToCartHandler()} varient="primary">
+                      <Button onClick={addToCartHandler} varient="primary">
                         Add to cart
                       </Button>
                     </div>

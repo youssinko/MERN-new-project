@@ -1,5 +1,6 @@
 import "./App.css";
-
+import{ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -17,10 +18,15 @@ import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 
 function App() {
-  const { state } = useContext(Store);
+  const { state, dispatch: contextDispatch } = useContext(Store);
   const { cart,userInfo } = state;
+  const signoutHandler =()=>{
+    contextDispatch({type: 'USER_SIGNOUT'})
+    localStorage.removeItem('userInfo')
+  }
   return (
     <div className="d-flex flex-column site-container">
+      <ToastContainer position='bottom-center' limit={1} />
       <header>
         <Navbar style={{ backgroundColor: "rgb(33,33,33)" }}>
           <Container>
@@ -40,11 +46,18 @@ function App() {
                 )}
               </Link>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
+                <NavDropdown title={userInfo.name} id='basic-nav-dropdown'> 
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>User profile</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to='/orderhistory'>
+                    <NavDropdown.Item>Order History</NavDropdown.Item>
+                  </LinkContainer>
+                <NavDropdown.Divider />
+                  <Link className="dropdown-item" to="#signout" onClick={signoutHandler}>Sign out</Link>
+                
                 </NavDropdown>
+                
               ):(
                 <Link className='nav-link' to='/signin'>Sign In</Link>
               )}
