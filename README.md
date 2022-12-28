@@ -88,3 +88,5 @@ created subtotal by multiplying added price with added quantity (items) and crea
 created signinScreen.js with form to fill out email/password or redirect to signup page
 
 connected to mongoDB and seeded data in the backend folder and created express routes in seedRoutes.js file
+
+^^^ error with axios then it was fixed by clearing cache in browser. However, window alert keeps popping.
