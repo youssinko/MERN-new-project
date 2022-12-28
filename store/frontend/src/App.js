@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import logo from "./logo.jpeg";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
 
 import Container from "react-bootstrap/Container";
@@ -17,7 +18,7 @@ import SigninScreen from "./screens/SigninScreen";
 
 function App() {
   const { state } = useContext(Store);
-  const { cart } = state;
+  const { cart,userInfo } = state;
   return (
     <div className="d-flex flex-column site-container">
       <header>
@@ -38,6 +39,15 @@ function App() {
                   </Badge>
                 )}
               </Link>
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>User profile</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              ):(
+                <Link className='nav-link' to='/signin'>Sign In</Link>
+              )}
             </Nav>
           </Container>
         </Navbar>

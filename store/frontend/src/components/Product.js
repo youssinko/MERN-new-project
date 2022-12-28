@@ -7,7 +7,7 @@ import { useContext } from 'react'
 import { Store } from '../Store'
 import axios from 'axios'
 function Product(props) {
-
+  const {product} = props
 
   const {state, dispatch:contextDispatch} =useContext(Store)
   const {
@@ -19,19 +19,19 @@ function Product(props) {
 // //function that add item to the cart, dispatch an action in the react context
 // contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity:1}})
 //    }
-const addToCartHandler=async(Item)=>{
-  const existItem=cartItems.find((x)=> x._id === product._id)
-  const quantity= existItem? existItem.quantity + 1 : 1
-  const {data} = await axios.get(`/api/products/${product._id}`)
-  if(data.stock < quantity){
-    window.alert('Sorry,Product is out of stock')
-    return
+const addToCartHandler = async (item) => {
+  const existItem = cartItems.find((x) => x._id === product._id);
+  const quantity = existItem ? existItem.quantity + 1 : 1;
+  const { data } = await axios.get(`/api/products/${item._id}`);
+  if (data.stock < quantity) {
+    window.alert('Sorry. Product is out of stock');
+    return;
   }
 //function that add item to the cart, dispatch an action in the react contect
-contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity}})
+contextDispatch({type:'CART_ADD_ITEM',payload:{...item,quantity}})
  }
 
-    const {product} = props
+    
   return (
     <Card>
     <Link to={`/product/${product.slug}`}>
@@ -46,7 +46,7 @@ contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity}})
         <Card.Text>${product.price}</Card.Text>
         {product.stock === 0 ? <Button style={{backgroundColor:'grey'}} disabled>Out of Stock</Button>
         :
-      <Button onClick={addToCartHandler}> Add to Cart</Button>
+      <Button onClick={() => addToCartHandler(product)}> Add to Cart</Button>
   }
       </Card.Body>
 </Card>

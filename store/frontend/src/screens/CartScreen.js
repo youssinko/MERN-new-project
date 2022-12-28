@@ -19,6 +19,8 @@ function CartScreen() {
     cart: { cartItems },
   } = state;
 
+ //CRUD: read=get method
+
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.stock < quantity) {

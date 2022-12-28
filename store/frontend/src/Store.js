@@ -1,14 +1,19 @@
+//////////========= store data to local storage in this file ===========//////////
+
 import { createContext, useReducer } from "react";
 export const Store = createContext();
+
 const initialState = {
   cart: {
-    cartItems:localStorage.getItem('cartItems')? JSON.parse(localStorage.getItem('cartItems')):[] , //if cartItem exist in local storage , use JSON.parse to convert string to javascript object otherwise set it as empty array
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+    //if cartItem exist in local storage , use JSON.parse to convert string to javascript object otherwise set it as empty array
   },
 };
 function reducer(state, action) {
   switch (action.type) {
-    
-    case 'CART_ADD_ITEM':
+    case "CART_ADD_ITEM":
       // add to cart
       const newItem = action.payload;
       //use find function to look if item is existing in the shopping cart
@@ -21,18 +26,22 @@ function reducer(state, action) {
             item._id === existItem._id ? newItem : item
           )
         : [...state.cart.cartItems, newItem];
-        //store at localstorage so in case if we refresh page, items in cart still exist
-      localStorage.setItem('cartItems',JSON.stringify(cartItems))
+      //store at localstorage so in case if we refresh page, items in cart still exist
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
 
-  case "CART_REMOVE_ITEM":{
-    const cartItems =state.cart.cartItems.filter(
-      (item)=>item._id !== action.payload._id
-    )
-    localStorage.setItem('cartItems',JSON.stringify(cartItems))
-    return{...state,cart:{...state.cart,cartItems}}
-  }
-    //keep  the state and keep all items in the cart then add new item in action.payload
+    case "CART_REMOVE_ITEM": {
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      return { ...state, cart: { ...state.cart, cartItems } };
+      //keep  the state and keep all items in the cart then add new item in action.payload
+    }
+    case "USER_SIGNIN":
+      return { ...state, userInfo: action.payload };
+    //keep previous state and update userinfo based on info we received from backend
+
     default:
       return state;
   }

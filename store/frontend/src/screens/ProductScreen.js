@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext } from "react";
 import { useReducer, useEffect } from "react";
 import {useNavigate, useParams } from "react-router-dom";
@@ -8,11 +9,11 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Rating from "../components/Rating";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
+
 import { Helmet } from "react-helmet-async";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
-import getError from "../utilities";
+import {getError }from "../utilities";
 import { Store } from "../Store";
 const reducer = (state, action) => {
   //state is current state, action that change  the state and create new state
@@ -63,7 +64,7 @@ function ProductScreen() {
   }, [slug]); //when user switch pages/slug =>refetching
 
   const { state, dispatch: contextDispatch } = useContext(Store);
-  const { cart } = state;
+  const { cart, userInfo } = state;
 
   //we can have an access of state of context and change it --globally
   const addToCartHandler = async () => {
@@ -72,7 +73,7 @@ function ProductScreen() {
     const { data } = await axios.get(`/api/products/${product._id}`)
     
     if (data.stock < quantity) {
-      window.alert("Sorry,Product is out of Stock");
+      // window.alert("Sorry,Product is out of Stock");
       return;
     }
     //function that add item to the cart, dispatch an action in the react contect
@@ -144,7 +145,7 @@ function ProductScreen() {
                 {product.stock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToCartHandler} varient="primary">
+                      <Button onClick={addToCartHandler()} varient="primary">
                         Add to cart
                       </Button>
                     </div>
