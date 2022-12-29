@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
+import SignUpscreen from "./screens/SignUpscreen";
 import ShippingAddressScreen from "./screens/ShippingScreen";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   const signoutHandler =()=>{
     contextDispatch({type: 'USER_SIGNOUT'})
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingAddress')
   }
   return (
     <div className="d-flex flex-column site-container">
@@ -74,6 +76,7 @@ function App() {
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/signin" element={<SigninScreen />}></Route>
             <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
+            <Route path="/signup" element={<SignUpscreen />}></Route>
             
 
           </Routes>
