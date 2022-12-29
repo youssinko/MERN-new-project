@@ -90,3 +90,5 @@ created signinScreen.js with form to fill out email/password or redirect to sign
 connected to mongoDB and seeded data in the backend folder and created express routes in seedRoutes.js file
 
 ^^^ error with axios then it was fixed by clearing cache in browser. However, window alert keeps popping.
+
+created shipping address screen and store the info in the localstorage as long as user still logged in , also created steps components to show active steps from siging in to the place order
