@@ -17,16 +17,18 @@ export default function ShippingAddressScreen() {
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
+  const [homeState, setHomeState] = useState(shippingAddress.homeState || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
+  const [country, setCountry] = useState(shippingAddress.country || "");
   useEffect(() => {
     //if user doesn't exist, direct user to sign in , when sign in is true, direct to shipping screen
     if (!userInfo) {
       navigate("/signin?redirect=/shipping");
     }
   }, [userInfo, navigate]);
-  const [country, setCountry] = useState(shippingAddress.country || "");
+
   const submitHandler = (e) => {
     e.preventDefault();
     contextDispatch({
@@ -35,6 +37,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
+        homeState,
         postalCode,
         country,
       },
@@ -45,6 +48,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
+        homeState,
         postalCode,
         country,
       })
@@ -83,6 +87,15 @@ export default function ShippingAddressScreen() {
             <Form.Control
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </Form.Group>
+         
+          <Form.Group className="mb-3" controlId="homeState">
+            <Form.Label>State</Form.Label>
+            <Form.Control
+              value={homeState}
+              onChange={(e) => setHomeState(e.target.value)}
               required
             />
           </Form.Group>
