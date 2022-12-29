@@ -1,28 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
-import CheckoutSteps from "../components/CheckoutSteps";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import {Helmet} from 'react-helmet-async'
-import { useNavigate } from "react-router-dom";
-import { Store } from "../Store";
-function PaymentMethodScreen() {
-    const navigate = useNavigate();
-    const{state,dispatch: contextDispatch}=useContext(Store)
-    const{
-        cart: {shippingAddress ,PaymentMethod}
-    } = state  
+import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import CheckoutSteps from '../components/CheckoutSteps';
+import { Store } from '../Store';
 
-    const [PaymentMethodName, setPaymentMethodName]=useState(PaymentMethod || 'PayPal')
-    useEffect(()=>{
-        if(!shippingAddress.address){
-            navigate('/shipping')
-        }
-    },[])
-    const submitHandler=(e)=>{
-        e.preventDefault()
-        contextDispatch({type: "SAVE_PAYMENT_METHOD" , payload:PaymentMethodName})
-        localStorage.setItem('paymentMethod', PaymentMethodName)
+export default function PaymentMethodScreen() {
+  const navigate = useNavigate();
+  const { state, dispatch: contextDispatch } = useContext(Store);
+  const {
+    cart: { shippingAddress, paymentMethod },
+  } = state;
+
+  const [paymentMethodName, setPaymentMethod] = useState(
+    paymentMethod || 'PayPal'
+  );
+
+  useEffect(() => {
+    if (!shippingAddress.address) {
+      navigate('/shipping');
     }
+  }, [shippingAddress, navigate]);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    contextDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
+    localStorage.setItem('paymentMethod', paymentMethodName);
+    navigate('/placeorder');
+  };
   return (
     <div>
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
@@ -38,19 +43,25 @@ function PaymentMethodScreen() {
               id="PayPal"
               label="PayPal"
               value="PayPal"
-              checked={PaymentMethodName === "PayPal"}
-              onChange={(e) => {
-                setPaymentMethodName(e.target.value);
-              }}
-            ></Form.Check>
+              checked={paymentMethodName === 'PayPal'}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <Form.Check
+              type="radio"
+              id="Stripe"
+              label="Stripe"
+              value="Stripe"
+              checked={paymentMethodName === 'Stripe'}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <Button type="submit">Continue</Button>
           </div>
         </Form>
-        <div className="mb-3">
-          <Button type="submit">Continue</Button>
-        </div>
       </div>
     </div>
   );
 }
-
-export default PaymentMethodScreen;
