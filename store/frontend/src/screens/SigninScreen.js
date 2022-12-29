@@ -33,7 +33,7 @@ function SigninScreen() {
     //stop refreshing page when sign in
     event.preventDefault();
     try {
-      //pass email and password thru post method to /api/users/signin (CRUD : create=post),get response and extract response from data
+      //pass email and password thru "post" method to /api/users/signin (CRUD : create=post),get response and extract response from data
       const { data } = await Axios.post("/api/users/signin", {
         email,
         password,

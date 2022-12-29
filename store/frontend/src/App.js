@@ -18,6 +18,7 @@ import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import SignUpscreen from "./screens/SignUpscreen";
 import ShippingAddressScreen from "./screens/ShippingScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 
 function App() {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -26,6 +27,7 @@ function App() {
     contextDispatch({type: 'USER_SIGNOUT'})
     localStorage.removeItem('userInfo')
     localStorage.removeItem('shippingAddress')
+    localStorage.removeItem('paymentMethod')
   }
   return (
     <div className="d-flex flex-column site-container">
@@ -77,6 +79,7 @@ function App() {
             <Route path="/signin" element={<SigninScreen />}></Route>
             <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
             <Route path="/signup" element={<SignUpscreen />}></Route>
+            <Route path="/payment" element={<PaymentMethodScreen/>}></Route>
             
 
           </Routes>
