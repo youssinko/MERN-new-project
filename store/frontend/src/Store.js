@@ -48,6 +48,11 @@ function reducer(state, action) {
       return { ...state, cart: { ...state.cart, cartItems } };
       //keep  the state and keep all items in the cart then add new item in action.payload
     }
+    case "CART_CLEAR":
+      return{...state, cart:{
+        ...state.cart ,cartItems:[]}
+        
+      }
     case "USER_SIGNIN":
       return { ...state, userInfo: action.payload };
     //keep previous state and update userinfo based on info we received from backend
