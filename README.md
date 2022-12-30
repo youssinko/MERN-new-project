@@ -16,7 +16,7 @@ Install Tools
      
      *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps (import 'bootstrap/dist/css/bootstrap.min.css' in index.js)
      
-     *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps(inside frontend folder) and added HelmetProvider in index.js 
+     *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps , npm i @paypal/react-paypal-js(inside frontend folder) and added HelmetProvider in index.js 
      
      *** npm i mongoose , npm i dotenv, npm i express-async-handler , npm i jsonwebtoken and npm i bcryptjs in backend folder
 
@@ -96,3 +96,5 @@ created shipping address screen and store the info in the localstorage as long a
 created preview order screen where user can see a summary of the purchase and total cost with tax and shipping cost 
 
 created order API and fetching order info in order screen ( created routes in backend , added isAuth in utilities to detect if order is being placed by logged in user and creatd order model to send data to mongodb)
+
+setting up paypal: logoged in to developer.paypal.com => dashboard => selected sandbox (we only testing ) and created app 
