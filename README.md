@@ -92,3 +92,5 @@ connected to mongoDB and seeded data in the backend folder and created express r
 ^^^ error with axios then it was fixed by clearing cache in browser. However, window alert keeps popping.
 
 created shipping address screen and store the info in the localstorage as long as user still logged in , also created steps components to show active steps from siging in to the place order
+
+created preview order screen where user can see a summary of the purchase and total cost with tax and shipping coost 
