@@ -93,4 +93,6 @@ connected to mongoDB and seeded data in the backend folder and created express r
 
 created shipping address screen and store the info in the localstorage as long as user still logged in , also created steps components to show active steps from siging in to the place order
 
-created preview order screen where user can see a summary of the purchase and total cost with tax and shipping coost 
+created preview order screen where user can see a summary of the purchase and total cost with tax and shipping cost 
+
+created order API and fetching order info in order screen ( created routes in backend , added isAuth in utilities to detect if order is being placed by logged in user and creatd order model to send data to mongodb)
