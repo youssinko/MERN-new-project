@@ -23,7 +23,10 @@ const app = express();
 //form data in in the post request (in userroutes.js)will be converted to a json object inside req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.get("/api/keys/paypal", (req,res)=>{
+  res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
+});
+//sb stands for sandbox
 app.use("/api/seed", seedRouter);
 // in browser , type localhost/5000/api/seed to seed to database
 
@@ -31,6 +34,7 @@ app.use("/api/products", productRouter);
 
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+
 
 //middleware
 app.use((err, req, res, next) => {

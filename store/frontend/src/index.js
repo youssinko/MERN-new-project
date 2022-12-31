@@ -1,27 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {HelmetProvider} from "react-helmet-async"
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { StoreProvider } from './Store';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { HelmetProvider } from "react-helmet-async";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router } from "react-router-dom";
+import { StoreProvider } from "./Store";
+import {PayPalScriptProvider} from "@paypal/react-paypal-js";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  
   <React.StrictMode>
     <StoreProvider>
-    <HelmetProvider>
-    <Router>
-    <App /> 
-    </Router>
-    </HelmetProvider>
+      <HelmetProvider>
+        <Router>
+          <PayPalScriptProvider deferLoading={true}>
+            <App />
+          </PayPalScriptProvider>
+        </Router>
+      </HelmetProvider>
     </StoreProvider>
   </React.StrictMode>
- 
 );
 
 // If you want to start measuring performance in your app, pass a function
