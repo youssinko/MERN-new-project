@@ -1,5 +1,5 @@
 import express from "express";
-import data from "./data.js";
+import path from 'path'
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import seedRouter from "./routes/seedRoutes.js";
@@ -36,7 +36,17 @@ app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 
 
-//middleware
+// ========= middleware ===========
+//get directory name from path.resolve
+const __direname = path.resolve()
+//serve all files inside frontend build folder as a static folder
+app.use(express.static(path.join(__direname,'frontend/build')))
+//everything user enter after website domain, will be served by index.html
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__direname,'/frontend/build/index.html'))
+})
+
+
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });

@@ -8,6 +8,8 @@ import { Helmet } from "react-helmet-async";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
 
+import ControlledCarousel from "../components/Carousel";
+
 
 //manage complex state by using useReducer instead of useState (useState always depend on previous state)
 const reducer = (state, action) => {
@@ -64,6 +66,7 @@ function HomeScreen() {
         </title>
       </Helmet>
       <h1>personalized products</h1>
+      <ControlledCarousel />
       <div className="products">
         {loading ? (
           <Loading />
