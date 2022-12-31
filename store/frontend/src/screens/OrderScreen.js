@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import Loading from "../components/Loading";
+
 import MessageBox from "../components/MessageBox";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/esm/ListGroup";
-import {toast }from 'react-toastify'
+import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 function reducer(state, action) {
   switch (action.type) {
@@ -24,14 +24,14 @@ function reducer(state, action) {
       return { ...state, loading: false, order: action.payload, error: "" };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
-      case "PAY_REQUEST":
-        return{...state, loadingPay:true}
-        case "PAY_SUCCESS":
-            return{...state, loadingPay:false, successPay:true}
-      case "PAY_FAIL":
-        return{...state, loadingPay:false,errorPay:action.payload}
-        case "PAY_RESET":
-            return{...state, loadingPay:false,successPay:false}
+      case 'PAY_REQUEST':
+        return { ...state, loadingPay: true };
+      case 'PAY_SUCCESS':
+        return { ...state, loadingPay: false, successPay: true };
+      case 'PAY_FAIL':
+        return { ...state, loadingPay: false };
+      case 'PAY_RESET':
+        return { ...state, loadingPay: false, successPay: false };
     default:
       return state;
   }
@@ -44,13 +44,15 @@ function OrderScreen() {
   const params = useParams();
   const { id: orderId } = params;
   const navigate = useNavigate();
-  const [{ loading, error, order, successPay, loadingPay,errorPay }, dispatch] = useReducer(reducer, {
+  const [
+    { loading, error, order, successPay, loadingPay},
+    dispatch,
+  ] = useReducer(reducer, {
     loading: true,
     order: {},
     error: "",
-    successPay:false,
-    loadingPay:false,
-
+    successPay: false,
+    loadingPay: false,
   });
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer(); //isPending is a state of loading script and paypalpatch is function of loading script
   function createOrder(data, actions) {
@@ -66,11 +68,11 @@ function OrderScreen() {
         return orderID;
       });
   }
-  //approve () happens after successful capture payment,update the order in the backend 
+  //approve () happens after successful capture payment,update the order in the backend
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
-        dispatch({ type: "PAY_REQUEST" });
+        dispatch({ type: 'PAY_REQUEST' });
         const { data } = await axios.put(
           `/api/orders/${order._id}/pay`,
           details,
@@ -78,19 +80,19 @@ function OrderScreen() {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
         );
-        dispatch({ type: "PAY_SUCCESS", payload: data });
-        toast.success("Order is Paid");
+        dispatch({ type: 'PAY_SUCCESS', payload: data });
+        toast.success('Order is paid');
       } catch (err) {
-        dispatch({ type: "PAY_FAIL", payload: getError(err) });
+        dispatch({ type: 'PAY_FAIL', payload: getError(err) });
         toast.error(getError(err));
       }
     });
   }
-  function onError(err){
-    toast.error(getError(err))
+  
+  function onError(err) {
+    toast.error(getError(err));
   }
   useEffect(() => {
-  
     const fetchOrder = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
@@ -108,16 +110,17 @@ function OrderScreen() {
     }
     if (
       //if order id is null or doesnt equal to current order id then fetch order
-      !order._id || successPay ||
+      !order._id ||
+      successPay ||
       (order._id && order._id !== orderId)
     ) {
       fetchOrder();
-      if(successPay){
-        dispatch({type:'PAY_RESET'})
+      if (successPay) {
+        dispatch({ type: "PAY_RESET" });
       }
     } else {
-     const loadPaypalScript = async () => {
-          //sending data to the backend to get paypal client id 
+      const loadPaypalScript = async () => {
+        //sending data to the backend to get paypal client id
         const { data: clientId } = await axios.get(`/api/keys/paypal`, {
           headers: { authorization: `Bearer${userInfo.token}` },
         });
@@ -128,12 +131,12 @@ function OrderScreen() {
             currency: "USD",
           },
         });
-      
-      paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
+      loadPaypalScript();
     }
-    loadPaypalScript();
-}
-  }, [order, userInfo, orderId, navigate, paypalDispatch,successPay]);
+  }, [order, userInfo, orderId, navigate, paypalDispatch, successPay]);
   return loading ? (
     <Loading />
   ) : error ? (
