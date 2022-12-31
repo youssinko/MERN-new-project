@@ -2,25 +2,25 @@
 
 Install Tools 
 
- ***	npx create-react-app store (creating frontend and backend folders)
+      ***	npx create-react-app store (creating frontend and backend folders)
  
-  *** npm install react-router-dom
+      *** npm install react-router-dom
   
-   *** npm i express 
+      *** npm i express 
    
-    *** npm i nodemon --save-dev (inside backend folder)
+      *** npm i nodemon --save-dev (inside backend folder)
     
-     ***npm i use-reducer-logger --force (inside frontend folder)
+      ***npm i use-reducer-logger --force (inside frontend folder)
      
-     ***install bootstrap npm install react-bootstrap bootstrap --legacy-peer-deps
+      ***install bootstrap npm install react-bootstrap bootstrap --legacy-peer-deps
      
-     *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps (import 'bootstrap/dist/css/bootstrap.min.css' in index.js)
+      *** install bootstrap router  npm i react-router-bootstrap --legacy-peer-deps (import 'bootstrap/dist/css/bootstrap.min.css' in index.js)
      
-     *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps , npm i @paypal/react-paypal-js(inside frontend folder) and added HelmetProvider in index.js 
+      *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps , npm i @paypal/react-paypal-js(inside frontend folder) and added HelmetProvider in index.js 
      
      *** npm i mongoose , npm i dotenv, npm i express-async-handler , npm i jsonwebtoken and npm i bcryptjs in backend folder
      
-     **npn init and npm run build (root folder)
+     **npm init and npm run build (root folder)
 
 Create React App
 
