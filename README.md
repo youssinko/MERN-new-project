@@ -19,6 +19,8 @@ Install Tools
      *** npm i react-helmet-async --legacy-peer-deps ,  npm i react-toastify --legacy-peer-deps , npm i @paypal/react-paypal-js(inside frontend folder) and added HelmetProvider in index.js 
      
      *** npm i mongoose , npm i dotenv, npm i express-async-handler , npm i jsonwebtoken and npm i bcryptjs in backend folder
+     
+     **npn init and npm run build (root folder)
 
 Create React App
 
@@ -98,3 +100,9 @@ created preview order screen where user can see a summary of the purchase and to
 created order API and fetching order info in order screen ( created routes in backend , added isAuth in utilities to detect if order is being placed by logged in user and creatd order model to send data to mongodb)
 
 setting up paypal: logoged in to developer.paypal.com => dashboard => selected sandbox (we only testing ) and created app 
+
+added orderhistory screen and updated orderRoute in backend
+
+added updateProfile and updated userRoute in backend
+
+installed json package  and npm run build in the main/root folder of the project (npm init)and (npm run build) , added "build" and "start" under package Json's script  and updated server.js with middlewares
