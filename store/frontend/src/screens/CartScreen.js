@@ -19,7 +19,7 @@ function CartScreen() {
     cart: { cartItems },
   } = state;
 
- //CRUD: read=get method
+  //CRUD: read=get method
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
@@ -41,7 +41,7 @@ function CartScreen() {
     });
   };
   const checkoutHandler = () => {
-    navigate('/signin?redirect=/shipping');; //direct to signin screen, if user is authenticated then redirect to shipping address
+    navigate("/signin?redirect=/shipping"); //direct to signin screen, if user is authenticated then redirect to shipping address
   };
   return (
     <div>
@@ -112,6 +112,7 @@ function CartScreen() {
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
                   </h3>
                 </ListGroup.Item>
+
                 <ListGroup.Item>
                   <Button
                     type="button"

@@ -27,6 +27,7 @@ const data = {
       numReviews: 10,
       stock: 5,
       description: "Personalized color-changing tumbler",
+ 
     },
     {
     
@@ -39,6 +40,7 @@ const data = {
       numReviews: 10,
       stock: 5,
       description: "Personalized short-sleeve shirts",
+ 
     },
     {
       
@@ -51,6 +53,7 @@ const data = {
       numReviews: 40,
       stock: 0,
       description: "Personalized stickers, qty:100",
+  
     },
   ],
 };

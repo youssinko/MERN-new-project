@@ -18,6 +18,9 @@ const initialState = {
       paymentMethod: localStorage.getItem("paymentMethod")
       ? JSON.parse(localStorage.getItem("paymentMethod"))
       : '',
+      personalizedMsg: localStorage.getItem("personalizedMsg")
+      ? JSON.parse(localStorage.getItem("personalizedMsg"))
+      : {},
     //if cartItem exist in local storage , use JSON.parse to convert string to javascript object otherwise set it as empty array
   },
 };
@@ -75,6 +78,12 @@ function reducer(state, action) {
         paymentMethod: action.payload,
       },
     }
+    // case "SAVE_MESSAGE":
+    //   return{...state, cart:{
+    //     ...state.cart , 
+    //     personalizedMsg: action.payload,
+    //   },
+    // }
 
       default:
       return state;

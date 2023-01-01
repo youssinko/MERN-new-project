@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { useReducer, useEffect } from "react";
-import {useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
@@ -13,8 +13,9 @@ import Button from "react-bootstrap/Button";
 import { Helmet } from "react-helmet-async";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
-import {getError }from "../utilities";
+import { getError } from "../utilities";
 import { Store } from "../Store";
+import Form from "react-bootstrap/Form";
 const reducer = (state, action) => {
   //state is current state, action that change  the state and create new state
   switch (action.type) {
@@ -31,7 +32,7 @@ const reducer = (state, action) => {
   }
 };
 function ProductScreen() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -70,8 +71,8 @@ function ProductScreen() {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`)
-    
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
     if (data.stock < quantity) {
       window.alert("Sorry,Product is out of Stock");
       return;
@@ -79,21 +80,21 @@ function ProductScreen() {
     //function that add item to the cart, dispatch an action in the react contect
     contextDispatch({
       type: "CART_ADD_ITEM",
-      payload: { ...product, quantity},
+      payload: { ...product, quantity },
     });
-    navigate('/cart')
+    navigate("/cart");
   };
 
-//   const {state, dispatch:contextDispatch} =useContext(Store)
-//   const {
-//     cart: { cartItems },
-//   } = state;
-  
-// //we can have an access of state of context and change it --globally
-//    const addToCartHandler=(item)=>{
-// //function that add item to the cart, dispatch an action in the react context
-// contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity:1}})
-//    }
+  //   const {state, dispatch:contextDispatch} =useContext(Store)
+  //   const {
+  //     cart: { cartItems },
+  //   } = state;
+
+  // //we can have an access of state of context and change it --globally
+  //    const addToCartHandler=(item)=>{
+  // //function that add item to the cart, dispatch an action in the react context
+  // contextDispatch({type:'CART_ADD_ITEM',payload:{...product,quantity:1}})
+  //    }
   return loading ? (
     <Loading />
   ) : error ? (

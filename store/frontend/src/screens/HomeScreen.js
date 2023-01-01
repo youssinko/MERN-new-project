@@ -65,8 +65,9 @@ function HomeScreen() {
           Home
         </title>
       </Helmet>
-      <h1>personalized products</h1>
+      <h1 className="homeScreenTitle">Customize Your Gift and Make it Special!</h1>
       <ControlledCarousel />
+      
       <div className="products">
         {loading ? (
           <Loading />

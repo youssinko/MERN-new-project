@@ -36,6 +36,7 @@ const orderSchema = new mongoose.Schema(
     shippingPrice: { type: Number, required: true },
     taxPrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
+    // personalizedMsg:{ type: String },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

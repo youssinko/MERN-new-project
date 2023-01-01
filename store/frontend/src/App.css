@@ -37,7 +37,7 @@
   }
 }
 .nav-link{
-  color: rgb(233,81,127);
+  color: rgb(233,81,127) !important;
   font-weight: bold;
   font-size: 20pt;
 }

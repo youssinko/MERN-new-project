@@ -41,7 +41,7 @@ function App() {
           <Container>
             <LinkContainer to="/">
               <Navbar.Brand>
-                <img src={logo} alt="Home" style={{ width: "190px" }} />
+                <img src={logo} alt="Home" style={{ width: "10vw" }} />
               </Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" style={{backgroundColor:'rgb(60,188,176)'}} />

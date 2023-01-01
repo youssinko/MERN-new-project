@@ -17,11 +17,14 @@ main{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 30px;
 }
-/* .product{
-  border: 1px grey solid;
-  margin: 1rem;
-} */
+.homeScreenTitle{
+  display: flex;
+  justify-content: center;
+  color: rgb(60,188,176);
+  font-weight: bold;
+}
 .products img{
   width:100%;
   max-width: 400px;
@@ -139,6 +142,7 @@ main{
 }
 .carousel-item.active, .carousel-item  {
   height: 30vh!important;
+
 }
 
 .carousel-item img {

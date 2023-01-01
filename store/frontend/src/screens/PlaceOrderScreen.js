@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Helmet } from "react-helmet-async";
 import Row from "react-bootstrap/Row";
@@ -10,10 +10,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
-import {toast} from "react-toastify";
-import Axios from 'axios'
-import Loading from '../components/Loading'
+import { toast } from "react-toastify";
+import Axios from "axios";
+import Loading from "../components/Loading";
 import { getError } from "../utilities";
+import Form from "react-bootstrap/Form";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,13 +29,13 @@ const reducer = (state, action) => {
 function PlaceOrderScreen() {
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
-    
   });
   const navigate = useNavigate();
 
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const { cart, userInfo } = state;
+  const [personalizedMsg, setPersonalizedMsg] = useState(" ");
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; //get 2 decimal points (ex: 123.2345 => 123.23)//EPSILON is a static property of the Number object that is used to return the smallest positive number approaching zero
 
@@ -46,6 +47,7 @@ function PlaceOrderScreen() {
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
+   
   const placeOrderHandler = async () => {
     try {
       dispatch({ type: "CREATE_REQUEST" });
@@ -59,7 +61,7 @@ function PlaceOrderScreen() {
           shippingPrice: cart.shippingPrice,
           taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
-        
+          // personalizedMsg: cart.personalizedMsg,
         },
         {
           //by setting second parameter / second option as code below, we are assuring that order is coming from  authorized user not hacker
@@ -69,9 +71,16 @@ function PlaceOrderScreen() {
         }
       );
       contextDispatch({ type: "CART_CLEAR" });
-      dispatch({type:'CREATE_SUCCESS'})
-      localStorage.removeItem('cartItems')
-      navigate(`/order/${data.order._id}`)
+      dispatch({ type: "CREATE_SUCCESS" });
+      localStorage.removeItem("cartItems");
+      // contextDispatch({ type: "SAVE_MESSAGE", payload: personalizedMsg });
+      // localStorage.setItem(
+      //   "personalizedMsg",
+      //   JSON.stringify( personalizedMsg )
+      // );
+    
+
+      navigate(`/order/${data.order._id}`);
     } catch (err) {
       dispatch({ type: "CREATE_FAIL" });
       toast.error(getError(err));
@@ -140,7 +149,16 @@ function PlaceOrderScreen() {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-
+              <form onSubmit={placeOrderHandler}>
+                <Form.Group className="mb-3" controlId="personalizedMsg">
+                  <Form.Label>Message</Form.Label>
+                  <Form.Control
+                    value={personalizedMsg}
+                    onChange={(e) => setPersonalizedMsg(e.target.value)}
+                    required
+                  ></Form.Control>
+                </Form.Group>
+              </form>
               <Link to="/cart">Edit</Link>
             </Card.Body>
           </Card>
@@ -186,7 +204,9 @@ function PlaceOrderScreen() {
                       type="button"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
-                    >Place Order</Button>
+                    >
+                      Place Order
+                    </Button>
                   </div>
                   {loading && <Loading></Loading>}
                 </ListGroup.Item>

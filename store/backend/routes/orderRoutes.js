@@ -19,6 +19,7 @@ orderRouter.post(
       taxPrice: req.body.taxPrice,
       totalPrice: req.body.totalPrice,
       user: req.user._id,
+      personalizedMsg:req.body.message
     });
 
     const order = await newOrder.save();
