@@ -2,10 +2,10 @@ import express from "express";
 import path from 'path'
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import seedRouter from "./routes/seedRoutes.js";
-import productRouter from "./routes/productRoutes.js";
-import userRouter from "./routes/userRoutes.js";
-import orderRouter from "./routes/orderRoutes.js";
+import seedRouter from "./store/backend/routes/seedRoutes.js";
+import productRouter from "./store/backend/routes/productRoutes.js";
+import userRouter from "./store/backend/routes/userRoutes.js";
+import orderRouter from "./store/backend/routes/orderRoutes.js";
 
 //to fetch variables in the env file
 dotenv.config();
