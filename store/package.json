@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"cd backend && npm install  && cd ../frontend && npm install && npm run build",
-    "start":"node backend/server.js",
+    "build":"react-scripts build",
+    "start":"react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject":"react-scripts eject",
     "prod-build":"npm i && npm run build",
