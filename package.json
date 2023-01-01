@@ -5,9 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"cd backend && npm install  && cd ../frontend && npm install && npm run build",
+
     "start":"react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"react-script build",
+    "test": "react-script test",
     "eject":"react-scripts eject",
     "prod-build":"npm i && npm run build",
     "prod_start":"node server.js"
