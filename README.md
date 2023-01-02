@@ -53,6 +53,8 @@ move data.js from frontend to backend
 
 create route for /api/products
 
+seed products by going to http://localhost:5000/api/seed
+
 run npm start
 
 Fetch Products From Backend
