@@ -65,7 +65,7 @@ function HomeScreen() {
           Home
         </title>
       </Helmet>
-      <h1>personalized products</h1>
+      <h1 style={{color:"rgb(60,188,176)" , display:"flex" ,justifyContent:"center"}}>Customize Your Gift and Make It Special!</h1>
       <ControlledCarousel />
       <div className="products">
         {loading ? (

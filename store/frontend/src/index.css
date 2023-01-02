@@ -17,11 +17,9 @@ main{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 30px;
 }
-/* .product{
-  border: 1px grey solid;
-  margin: 1rem;
-} */
+
 .products img{
   width:100%;
   max-width: 400px;
@@ -63,7 +61,6 @@ main{
   border-bottom: 0.2rem solid coral;
   color: rgb(60,188,176);
 }
-
 
 .carousel-item.active, .carousel-item .view {
   height: 50vh!important;

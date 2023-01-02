@@ -41,3 +41,24 @@
   font-weight: bold;
   font-size: 20pt;
 }
+.navbar-brand{
+  font-weight: bold;
+}
+.side-navbar{
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left:-300px;
+  background-color: rgb(250,207,5);
+  transition: 0.5s;
+
+}
+.site-container{
+  transition: 0.4s;
+}
+.active-cont{
+  margin-left: 240px;
+}
+.active-nav{
+  left: 0;
+}

@@ -32,7 +32,7 @@ const data = {
     
       name: "Shirts",
       slug: "long-sleeve shirts",
-      category: "shirts",
+      category: "Shirts",
       image: "/images/tshirt.jpeg",
       price: 30,
       rating: 3.7,
@@ -44,7 +44,7 @@ const data = {
       
       name: "Stickers",
       slug: "clear foil sticker",
-      category: "stickers",
+      category: "Stickers",
       image: "/images/sticker.jpeg",
       price: 30,
       rating: 4.3,
