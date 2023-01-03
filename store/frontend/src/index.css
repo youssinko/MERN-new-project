@@ -28,7 +28,7 @@ main{
 .rating span{
   color: goldenrod;
 }
-.btn-primary{
+.btn-primary, .btn-outline-primary{
   background-color: coral;
   color: black;
   font-weight: bold;

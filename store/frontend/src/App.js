@@ -25,6 +25,8 @@ import ProfileScreen from "./screens/ProfileScreen";
 import Button from "react-bootstrap/esm/Button";
 import { getError } from "./utilities";
 import axios from "axios";
+import SearchBox from "./components/SearchBox";
+import SearchSceeen from "./screens/SearchSceeen";
 
 function App() {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -81,6 +83,7 @@ function App() {
                 style={{ backgroundColor: "rgb(60,188,176)" }}
               />
               <Navbar.Collapse id="basic-navbar-nav">
+                <SearchBox />
                 <Nav className="me-auto w-100 justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
@@ -155,6 +158,7 @@ function App() {
                 element={<ShippingAddressScreen />}
               ></Route>
               <Route path="/signup" element={<SignUpscreen />}></Route>
+              <Route path="/search" element={<SearchSceeen />}></Route>
               <Route path="/profile" element={<ProfileScreen />}></Route>
 
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>

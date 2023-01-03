@@ -86,7 +86,7 @@ function CartScreen() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>{item.price}</Col>
+                    <Col md={3}>${item.price}</Col>
                     <Col md={2}>
                       <Button
                         varient="light"
@@ -107,8 +107,8 @@ function CartScreen() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    SubTotal({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                    items) : $
+                    Subtotal({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
+                    Items) : $
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
                   </h3>
                 </ListGroup.Item>
