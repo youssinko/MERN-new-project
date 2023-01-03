@@ -1,6 +1,7 @@
 import express, { query } from "express";
 import Product from "../models/productModel.js";
 import expressAsyncHandler from "express-async-handler";
+import { isAuth , isAdmin } from "../utilities.js";
 const productRouter = express.Router();
 // '/' is the same as "/api/products" defined in server.js
 
@@ -10,7 +11,28 @@ productRouter.get("/", async (req, res) => {
   //send data to frontend
   res.send(products);
 });
+productRouter.get("/products/admin", isAuth,
+isAdmin, async (req, res) => {
+  //return all products (import product from product model)
+  const products = await Product.find();
+  //send data to frontend
+  res.send(products);
+});
 
+productRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      await product.remove();
+      res.send({ message: 'Product Deleted' });
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
 
 const PAGE_SIZE = 3;
 productRouter.get(

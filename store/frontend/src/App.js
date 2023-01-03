@@ -27,6 +27,9 @@ import { getError } from "./utilities";
 import axios from "axios";
 import SearchBox from "./components/SearchBox";
 import SearchSceeen from "./screens/SearchSceeen";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
+import ProductListScreen from "./screens/ProductListScreen";
 
 function App() {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -115,6 +118,15 @@ function App() {
                       Sign In
                     </Link>
                   )}
+                  {userInfo && userInfo.isAdmin &&(
+                    <NavDropdown title='Admin' id='admin-nav-dropdown'>
+                      
+                      <LinkContainer to='/products/admin'>
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      
+                    </NavDropdown>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -159,14 +171,23 @@ function App() {
               ></Route>
               <Route path="/signup" element={<SignUpscreen />}></Route>
               <Route path="/search" element={<SearchSceeen />}></Route>
-              <Route path="/profile" element={<ProfileScreen />}></Route>
+              <Route path="/profile" element={<ProtectedRoute ><ProfileScreen /></ProtectedRoute>
+              }></Route>
 
               <Route path="/payment" element={<PaymentMethodScreen />}></Route>
               <Route path="/placeorder" element={<PlaceOrderScreen />}></Route>
-              <Route path="/order/:id" element={<OrderScreen />}></Route>
+              <Route path="/order/:id" element={<ProtectedRoute><OrderScreen /></ProtectedRoute>}></Route>
               <Route
                 path="/orderhistory"
-                element={<OrderHistoryScreen />}
+                element={<ProtectedRoute><OrderHistoryScreen /></ProtectedRoute>}
+              ></Route>
+               <Route
+                path="/products/admin"
+                element={
+                  <AdminRoute>
+                    <ProductListScreen />
+                  </AdminRoute>
+                }
               ></Route>
             </Routes>
           </Container>
