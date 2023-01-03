@@ -108,3 +108,9 @@ added orderhistory screen and updated orderRoute in backend
 added updateProfile and updated userRoute in backend
 
 installed json package  and npm run build in the main/root folder of the project (npm init)and (npm run build) , added "build" and "start" under package Json's script  and updated server.js with middlewares
+
+added filter option and searchbar 
+
+added protected route , only authorized users can access to them otherwise signin page will appear. 
+
+added admin routes, updated backend utilites , product-route and added product-list-screen with option to detele only by admin
