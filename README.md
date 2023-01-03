@@ -1,4 +1,5 @@
-# MERN-new-project
+# Welcome to My personal Ecommerce Website(Compatible with Mobile Devices)
+https://ecommerce-project-3.onrender.com/
 
 Install Tools 
 
@@ -114,3 +115,13 @@ added filter option and searchbar
 added protected route , only authorized users can access to them otherwise signin page will appear. 
 
 added admin routes, updated backend utilites , product-route and added product-list-screen with option to detele only by admin
+![Untitled Diagram-Page-1](https://user-images.githubusercontent.com/113655954/210391950-1012cb7b-91b7-4b6a-900e-ff531ba720db.jpg)
+
+
+
+organized the flow of my work using Trello https://trello.com/b/8AArl0DO/project-management
+![Screen Shot 2023-01-03 at 10 57 23 AM](https://user-images.githubusercontent.com/113655954/210393707-2e90baf4-109f-4a96-9bc7-8c5b9ddbcd31.png)
+
+![Screen Shot 2023-01-03 at 10 56 02 AM](https://user-images.githubusercontent.com/113655954/210393717-cb669527-b618-4434-ad34-43796b8b0ef1.png)![Screen Shot 2023-01-03 at 10 58 14 AM](https://user-images.githubusercontent.com/113655954/210393843-7c269b22-3c7f-45e8-adfd-81f73f18badd.png)
+
+![Screen Shot 2023-01-03 at 10 59 10 AM](https://user-images.githubusercontent.com/113655954/210394021-8a4cf47d-ffe7-4b29-ab42-f54a4d083226.png)
