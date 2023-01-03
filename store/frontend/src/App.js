@@ -30,6 +30,7 @@ import SearchSceeen from "./screens/SearchSceeen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import ProductListScreen from "./screens/ProductListScreen";
+import ControlledCarousel from "./components/Carousel";
 
 function App() {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -87,9 +88,20 @@ function App() {
               />
               <Navbar.Collapse id="basic-navbar-nav">
                 <SearchBox />
-                <Nav className="me-auto w-100 justify-content-end">
+                <Nav className="me-auto w-100 justify-content-end " >
                   <Link to="/cart" className="nav-link">
-                    Cart
+                  <i class="bi bi-cart-fill">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        fill="currentColor"
+                        class="bi bi-cart-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      </svg>
+                    </i>
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -148,7 +160,7 @@ function App() {
             </Nav.Item>
             {categories.map((category) => (
               <Nav.Item key={category}>
-                <LinkContainer
+                <LinkContainer 
                   to={{ pathname: "/search", search: `category=${category}` }}
                   onClick={() => setSidebarIsOpen(false)}
                 >
@@ -159,6 +171,7 @@ function App() {
           </Nav>
         </div>
         <main>
+          <ControlledCarousel />
           <Container className="mt-3">
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />}></Route>
