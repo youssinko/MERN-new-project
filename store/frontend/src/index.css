@@ -149,3 +149,6 @@ main{
 .carousel-caption{
 background-color: transparent;
 }
+.text-bold{
+  font-weight: bold;
+}
