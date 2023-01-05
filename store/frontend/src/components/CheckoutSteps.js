@@ -6,7 +6,7 @@ function CheckoutSteps(props) {
    <Row className='checkout-steps'>
     <Col className={props.step1? 'active' : ''}>Sign-in
     </Col>
-    <Col className={props.step2? 'active' : ''}>Shipping
+    <Col className={props.step2? 'active' : ''}>Shipping & Customization
     </Col>
     <Col className={props.step3? 'active' : ''}>Payment
     </Col>

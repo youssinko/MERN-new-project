@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Helmet } from "react-helmet-async";
 import Row from "react-bootstrap/Row";
@@ -10,9 +10,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
-import {toast} from "react-toastify";
-import Axios from 'axios'
-import Loading from '../components/Loading'
+import { toast } from "react-toastify";
+import Axios from "axios";
+import Loading from "../components/Loading";
 import { getError } from "../utilities";
 
 const reducer = (state, action) => {
@@ -28,7 +28,6 @@ const reducer = (state, action) => {
 function PlaceOrderScreen() {
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
-    
   });
   const navigate = useNavigate();
 
@@ -54,12 +53,12 @@ function PlaceOrderScreen() {
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
+          personalizedMsg: cart.personalizedMsg,
           paymentMethod: cart.paymentMethod,
           itemsPrice: cart.itemsPrice,
           shippingPrice: cart.shippingPrice,
           taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
-        
         },
         {
           //by setting second parameter / second option as code below, we are assuring that order is coming from  authorized user not hacker
@@ -69,19 +68,22 @@ function PlaceOrderScreen() {
         }
       );
       contextDispatch({ type: "CART_CLEAR" });
-      dispatch({type:'CREATE_SUCCESS'})
-      localStorage.removeItem('cartItems')
-      navigate(`/order/${data.order._id}`)
+
+      dispatch({ type: "CREATE_SUCCESS" });
+      localStorage.removeItem("cartItems");
+      navigate(`/order/${data.order._id}`);
     } catch (err) {
       dispatch({ type: "CREATE_FAIL" });
       toast.error(getError(err));
     }
   };
+
   useEffect(() => {
     if (!cart.paymentMethod) {
       navigate("/payment");
     }
   }, [cart, navigate]);
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -132,6 +134,7 @@ function PlaceOrderScreen() {
                         ></img>{" "}
                         <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
+
                       <Col md={3}>
                         <span>Quantity:{item.quantity}</span>
                       </Col>
@@ -186,7 +189,9 @@ function PlaceOrderScreen() {
                       type="button"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
-                    >Place Order</Button>
+                    >
+                      Place Order
+                    </Button>
                   </div>
                   {loading && <Loading></Loading>}
                 </ListGroup.Item>

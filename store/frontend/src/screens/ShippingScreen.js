@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Form from "react-bootstrap/Form";
@@ -12,8 +11,9 @@ export default function ShippingAddressScreen() {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const {
     userInfo,
-    cart: { shippingAddress },
+    cart: { shippingAddress, personalizedMsg },
   } = state;
+  const [customize, setCustomize] = useState(personalizedMsg || "");
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
@@ -42,6 +42,8 @@ export default function ShippingAddressScreen() {
         country,
       },
     });
+    contextDispatch({ type: "SAVE_PERSONALIZED_MSG", payload: customize });
+
     localStorage.setItem(
       "shippingAddress",
       JSON.stringify({
@@ -53,6 +55,7 @@ export default function ShippingAddressScreen() {
         country,
       })
     );
+    localStorage.setItem("personalizedMsg", JSON.stringify({ customize }));
     navigate("/payment");
   };
 
@@ -62,7 +65,7 @@ export default function ShippingAddressScreen() {
         <title>Shipping Address</title>
       </Helmet>
 
-     <CheckoutSteps step1 step2></CheckoutSteps>
+      <CheckoutSteps step1 step2></CheckoutSteps>
       <div className="container small-container">
         <h1 className="my-3">Shipping Address</h1>
         <Form onSubmit={submitHandler}>
@@ -90,7 +93,7 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-         
+
           <Form.Group className="mb-3" controlId="homeState">
             <Form.Label>State</Form.Label>
             <Form.Control
@@ -112,6 +115,15 @@ export default function ShippingAddressScreen() {
             <Form.Control
               value={country}
               onChange={(e) => setCountry(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="customize" style={{fontWeight:"bold"}}>
+            <Form.Label>Add your personalization</Form.Label>
+            <Form.Control
+              value={customize}
+              onChange={(e) => setCustomize(e.target.value)}
+              placeholder="Please Explain here how would you like each item to be customized!"
               required
             />
           </Form.Group>
